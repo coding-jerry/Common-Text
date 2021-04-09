@@ -2,3 +2,5 @@
 just another reposity
 how to learn git command
 git command
+
+send to
