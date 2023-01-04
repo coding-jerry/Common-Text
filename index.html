@@ -57,6 +57,10 @@
     <div class="timeMeg">
         <div id="times" class="times"></div>
         <div id="countDown" class="countDown"></div>
+        <select id="sels">
+          <option value ="selone">倒数</option>
+          <option value ="seltwo">烟花</option>
+        </select>
     </div>
     <script></script>
     <script>
@@ -109,6 +113,10 @@
             let second = nowTimeStr.getSeconds()
             times.innerHTML = "当前时间：" + Year + "年" + Month + "月" + Dates + "日 "+ (hour < 10 ? "0" : "" ) +  hour + "时" + (minute < 10 ? "0" : "" )  + minute + "分" +  (second < 10 ? "0" : "" ) + second + "秒"
             countDown.innerHTML = "距离大寒节气还剩：" + surplusDay + "天" + (surplusHour < 10 ? "0" : "" ) + surplusHour + "时" + (surplusMinute < 10 ? "0" : "" ) + surplusMinute + "分" + (surplusSecond < 10 ? "0" : "" ) + surplusSecond + "秒"         
+        }
+        var selObj = document.getElementById("sels")
+        selObj.onChange = function(){
+            console.log("下拉框改变")
         }
     </script>
 </body>
