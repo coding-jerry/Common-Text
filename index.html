@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            padding: 0;
+        }
+        .timeMeg {    
+            width: 500px;
+            height: 120px;
+            position: absolute;
+            top: 50%;
+            margin-top: -60px;
+            left: 50%;
+            margin-left: -250px;
+            background-color: rgba(219, 209, 209, 0.1);
+            text-align: center;
+            font-size: 20px;
+            border-radius: 10px;
+            box-shadow: 1px 1px 10px  rgba(241, 236, 236, 1);
+            z-index: 10;
+        }
+        .times {
+            margin-top: 20px;
+            color: #fff;
+        }
+        .countDown {
+            margin-top: 10px;
+            color: #fff;
+        }
+        @keyframes twinkle {
+            0% {
+                transform: scale(0);
+            }
+            25% {
+                transform: scale(0.5);
+            }
+            50% {
+                transform: scale(1);
+            }
+            75% {
+                transform: scale(0.5);
+            }
+            100% {
+                transform: scale(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="timeMeg">
+        <div id="times" class="times"></div>
+        <div id="countDown" class="countDown"></div>
+    </div>
+    <script></script>
+    <script>
+
+        DrawStar();
+        function DrawStar() {
+            let screenW = document.documentElement.clientWidth;
+            let screenH = document.documentElement.clientHeight;
+            for (let index = 0; index < 200; index++) {
+                let star = document.createElement("div");
+                let size = Math.random() * 15 + 1 
+                star.style.width = size + "px";
+                star.style.height = size + "px";
+                star.style.backgroundColor =  "white";
+                star.style.position = "absolute";
+                //位置随机
+                let x = Math.floor(Math.random() * screenW - 15);
+                let y = Math.floor(Math.random() * screenH - 15);
+                star.style.left = x + 'px';
+                star.style.top = y + 'px';
+                star.style.borderRadius = "50%";
+                star.style.boxShadow = "1px 1px 10px 1px rgba(241, 236, 236, 1)";
+                star.style.animation = "twinkle 1.5s linear 0.5s infinite";
+                star.style.transform = "scale(0)";
+                star.style.animationDelay = index * 0.1 + "s";
+                star.style.zIndex = "-1";
+                document.body.appendChild(star);
+            }
+        }
+        CountTime();
+        setInterval(CountTime,1000);
+        function CountTime() {
+            let times = document.getElementById("times")
+            let countDown = document.getElementById("countDown")
+            let endTimestr = new Date ("2023/1/20 00:00:00")
+            let endTime = endTimestr.getTime()
+            let nowTimeStr = new Date()
+            let nowTime = nowTimeStr.getTime() 
+            let surplusTime = endTime - nowTime
+            let surplus = surplusTime / 1000
+            let surplusDay =  Math.floor(surplus / 24 / 60 / 60 ) 
+            let surplusHour = 23 - nowTimeStr.getHours()
+            let surplusMinute =  59 - nowTimeStr.getMinutes()
+            let surplusSecond =  60 - nowTimeStr.getSeconds()
+            let Year = nowTimeStr.getFullYear() 
+            let Month = nowTimeStr.getMonth() + 1
+            let Dates = nowTimeStr.getDate()
+            let hour = nowTimeStr.getHours()
+            let minute = nowTimeStr.getMinutes() 
+            let second = nowTimeStr.getSeconds()
+            times.innerHTML = "当前时间：" + Year + "年" + Month + "月" + Dates + "日 "+ (hour < 10 ? "0" : "" ) +  hour + "时" + (minute < 10 ? "0" : "" )  + minute + "分" +  (second < 10 ? "0" : "" ) + second + "秒"
+            countDown.innerHTML = "距离大寒节气还剩：" + surplusDay + "天" + (surplusHour < 10 ? "0" : "" ) + surplusHour + "时" + (surplusMinute < 10 ? "0" : "" ) + surplusMinute + "分" + (surplusSecond < 10 ? "0" : "" ) + surplusSecond + "秒"         
+        }
+    </script>
+</body>
+</html>
