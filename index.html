@@ -66,6 +66,7 @@
         <select id="sels" onchange="selected(this)">
           <option value ="selone">倒数</option>
           <option value ="seltwo">烟花</option>
+          <option value ="selthree">生日</option>
         </select>
     </div>
     <script></script>
@@ -130,6 +131,10 @@
             if (index == 1) {
                 console.log(obj.options[index].value);
                 window.location.href = "firework.html";
+            }
+            if(index == 2)
+            {
+                window.location.href = "happyBirthday.html"
             }
         }
     </script>
