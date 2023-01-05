@@ -60,7 +60,7 @@
 </head>
 
 <body>
-    <div class="timeMeg">
+    <div id="timeMeg" class="timeMeg">
         <div id="times" class="times"></div>
         <div id="countDown" class="countDown"></div>
         <select id="sels" onchange="selected(this)">
@@ -124,8 +124,8 @@
         }
 
         function selected(obj) {
-            console.log("下拉框改变")
             var index = obj.selectedIndex;
+            console.log(index);
             //var val = obj.options[index].value;
 
             if (index == 1) {
@@ -134,8 +134,25 @@
             }
             if(index == 2)
             {
-                window.location.href = "happyBirthday.html"
+                var inputE = document.createElement("input");
+                inputE.type = "text"
+                inputE.setAttribute("id","nameInput");
+                inputE.setAttribute("placeholder","input your name");
+
+                var inputBtn = document.createElement("input");
+                inputBtn.setAttribute("type", "button");
+                inputBtn.setAttribute("value", "OK");
+                inputBtn.setAttribute("onclick", "jumpToBirthPage()");
+                var timeMeg = document.getElementById("timeMeg");
+                timeMeg.appendChild(inputE);
+                timeMeg.appendChild(inputBtn);
+                //window.location.href = "happyBirthday.html?name="
             }
+        }
+        function jumpToBirthPage()
+        {
+            console.log(nameInput.value);
+            window.location.href = "happyBirthday.html?name=" + escape(nameInput.value);
         }
     </script>
 </body>
